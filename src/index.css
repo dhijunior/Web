@@ -11,7 +11,7 @@
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 255 80% 74%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -23,7 +23,7 @@
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 255 80% 74%;
     --radius: 0.5rem;
   }
 
@@ -38,11 +38,11 @@
 
 @layer components {
   .nav-link {
-    @apply relative px-4 py-2 text-gray-700 hover:text-gray-900 transition-colors duration-200;
+    @apply relative px-4 py-2 text-gray-700 hover:text-primary transition-colors duration-200;
   }
 
   .nav-link::after {
-    @apply content-[''] absolute left-0 bottom-0 w-full h-[2px] bg-gray-900 scale-x-0 transition-transform duration-300 origin-right;
+    @apply content-[''] absolute left-0 bottom-0 w-full h-[2px] bg-primary scale-x-0 transition-transform duration-300 origin-right;
   }
 
   .nav-link:hover::after {

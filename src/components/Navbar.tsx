@@ -1,9 +1,17 @@
 
 import { useState, useEffect } from 'react';
-import { LogIn } from 'lucide-react';
+import { LogIn, ChevronDown, ChevronUp } from 'lucide-react';
+
+const subjects = [
+  { title: 'Mathematics', courses: ['Calculus', 'Algebra', 'Geometry', 'Statistics'] },
+  { title: 'Physics', courses: ['Mechanics', 'Thermodynamics', 'Electromagnetism', 'Quantum Physics'] },
+  { title: 'Chemistry', courses: ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry', 'Biochemistry'] },
+  { title: 'Biology', courses: ['Cell Biology', 'Genetics', 'Ecology', 'Human Anatomy'] }
+];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showCourses, setShowCourses] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +34,39 @@ const Navbar = () => {
           <div className="hidden md:flex md:items-center md:justify-center flex-1">
             <div className="flex items-center space-x-8">
               <a href="#" className="nav-link">Home</a>
-              <a href="#" className="nav-link">Courses</a>
+              <div className="relative">
+                <button 
+                  className="nav-link flex items-center gap-1"
+                  onClick={() => setShowCourses(!showCourses)}
+                >
+                  Courses
+                  {showCourses ? (
+                    <ChevronUp className="w-4 h-4" />
+                  ) : (
+                    <ChevronDown className="w-4 h-4" />
+                  )}
+                </button>
+                {showCourses && (
+                  <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2 z-50">
+                    {subjects.map((subject, index) => (
+                      <div key={index} className="px-4 py-2 hover:bg-gray-50">
+                        <div className="font-semibold text-primary">{subject.title}</div>
+                        <div className="mt-1 space-y-1">
+                          {subject.courses.map((course, courseIndex) => (
+                            <a
+                              key={courseIndex}
+                              href="#"
+                              className="block text-sm text-gray-600 hover:text-primary pl-2"
+                            >
+                              {course}
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
               <a href="#" className="nav-link">About</a>
               <a href="#" className="nav-link">Contact</a>
             </div>
