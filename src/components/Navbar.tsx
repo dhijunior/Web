@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { LogIn, ChevronDown, ChevronUp } from 'lucide-react';
 
 const subjects = [
@@ -12,14 +12,26 @@ const subjects = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showCourses, setShowCourses] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
 
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setShowCourses(false);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClickOutside);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   return (
@@ -34,7 +46,7 @@ const Navbar = () => {
           <div className="hidden md:flex md:items-center md:justify-center flex-1">
             <div className="flex items-center space-x-8">
               <a href="#" className="nav-link">Home</a>
-              <div className="relative">
+              <div className="relative" ref={menuRef}>
                 <button 
                   className="nav-link flex items-center gap-1"
                   onClick={() => setShowCourses(!showCourses)}

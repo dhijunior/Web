@@ -32,14 +32,10 @@ const Carousel = () => {
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute top-0 w-full h-full transition-transform duration-500 ease-in-out ${
+          className={`absolute top-0 w-full h-full transition-transform duration-300 ${
             index === currentSlide 
               ? 'translate-x-0'
               : direction === 'right'
-              ? index === (currentSlide - 1 + images.length) % images.length
-                ? 'translate-x-[-100%]'
-                : 'translate-x-[100%]'
-              : index === (currentSlide + 1) % images.length
               ? 'translate-x-[100%]'
               : 'translate-x-[-100%]'
           }`}
