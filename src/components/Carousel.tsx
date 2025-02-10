@@ -10,12 +10,15 @@ const images = [
 
 const Carousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState('right');
 
   const nextSlide = () => {
+    setDirection('right');
     setCurrentSlide((prev) => (prev + 1) % images.length);
   };
 
   const prevSlide = () => {
+    setDirection('left');
     setCurrentSlide((prev) => (prev - 1 + images.length) % images.length);
   };
 
@@ -29,8 +32,16 @@ const Carousel = () => {
       {images.map((image, index) => (
         <div
           key={index}
-          className={`absolute top-0 left-0 w-full h-full transition-opacity duration-500 ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
+          className={`absolute top-0 w-full h-full transition-transform duration-500 ease-in-out ${
+            index === currentSlide 
+              ? 'translate-x-0'
+              : direction === 'right'
+              ? index === (currentSlide - 1 + images.length) % images.length
+                ? 'translate-x-[-100%]'
+                : 'translate-x-[100%]'
+              : index === (currentSlide + 1) % images.length
+              ? 'translate-x-[100%]'
+              : 'translate-x-[-100%]'
           }`}
         >
           <img
