@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { LogIn, ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const subjects = [
   { title: 'Mathematics', courses: ['Calculus', 'Algebra', 'Geometry', 'Statistics'] },
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,10 +95,16 @@ const Navbar = () => {
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <button className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors font-medium">
+            <button 
+              onClick={() => navigate('/login')}
+              className="px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors font-medium"
+            >
               Login
             </button>
-            <button className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all shadow-md hover:shadow-lg active:shadow-sm flex items-center gap-2 font-medium">
+            <button 
+              onClick={() => navigate('/signup')}
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all shadow-md hover:shadow-lg active:shadow-sm flex items-center gap-2 font-medium"
+            >
               <LogIn className="w-4 h-4" />
               Sign Up
             </button>
@@ -155,10 +163,16 @@ const Navbar = () => {
               Contact
             </a>
             <div className="pt-4 flex flex-col space-y-2">
-              <button className="w-full px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors font-medium border border-gray-200 rounded-lg">
+              <button 
+                onClick={() => navigate('/login')}
+                className="w-full px-4 py-2 text-gray-600 hover:text-gray-900 transition-colors font-medium border border-gray-200 rounded-lg"
+              >
                 Login
               </button>
-              <button className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all shadow-md flex items-center justify-center gap-2 font-medium">
+              <button 
+                onClick={() => navigate('/signup')}
+                className="w-full px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all shadow-md flex items-center justify-center gap-2 font-medium"
+              >
                 <LogIn className="w-4 h-4" />
                 Sign Up
               </button>
