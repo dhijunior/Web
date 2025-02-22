@@ -5,25 +5,25 @@ import { Book, ChevronDown, ChevronUp } from 'lucide-react';
 const subjects = [
   {
     title: 'Mathematics',
-    description: 'Master complex mathematical concepts with our expert tutors',
+    description: 'Learn about numbers and shapes in intrective way',
     courses: ['Calculus', 'Algebra', 'Geometry', 'Statistics'],
     icon: Book
   },
   {
-    title: 'Physics',
-    description: 'Understand the fundamental laws that govern our universe',
+    title: 'General Science',
+    description: 'Learn about the world around us',
     courses: ['Mechanics', 'Thermodynamics', 'Electromagnetism', 'Quantum Physics'],
     icon: Book
   },
   {
-    title: 'Chemistry',
-    description: 'Explore the world of molecules and chemical reactions',
+    title: 'English',
+    description: 'Learn to read, write, and speak English',
     courses: ['Organic Chemistry', 'Inorganic Chemistry', 'Physical Chemistry', 'Biochemistry'],
     icon: Book
   },
   {
-    title: 'Biology',
-    description: 'Discover the fascinating science of life and living organisms',
+    title: 'Social Studies',
+    description: 'Learn about the history and culture of our country',
     courses: ['Cell Biology', 'Genetics', 'Ecology', 'Human Anatomy'],
     icon: Book
   }
@@ -38,7 +38,7 @@ const SubjectCards = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <h2 className="text-3xl font-bold text-center mb-12">Our Subjects</h2>
+      <h2 className="text-3xl font-bold text-center mb-12">Subjects of Interest</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {subjects.map((subject, index) => (
           <div key={index} className="subject-card">
