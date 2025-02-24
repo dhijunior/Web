@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { LogIn, ChevronDown, ChevronUp, Menu, X } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const subjects = [
   { title: 'Mathematics', courses: ['Calculus', 'Algebra', 'Geometry', 'Statistics'] },
@@ -44,8 +44,10 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/90 backdrop-blur-md shadow-lg' : 'bg-white'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
+      isScrolled 
+        ? 'bg-white/90 backdrop-blur-md shadow-[0_2px_8px_rgba(0,0,0,0.1)] border-gray-200' 
+        : 'bg-white border-gray-200 '
     }`} ref={mobileMenuRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -56,13 +58,13 @@ const Navbar = () => {
           </div>
           <div className="hidden md:flex md:items-center md:justify-center flex-1">
             <div className="flex items-center space-x-8">
-              <a href="/" className="text-gray-700 hover:text-primary transition-colors font-medium">Home</a>
+              <Link to="/" className="text-gray-700 hover:text-primary transition-colors font-medium">Home</Link>
               <div className="relative" ref={menuRef}>
                 <button 
                   className="text-gray-700 hover:text-primary transition-colors font-medium flex items-center gap-1 group"
                   onClick={() => setShowCourses(!showCourses)}
                 >
-                  Courses
+                  Subjects
                   {showCourses ? (
                     <ChevronUp className="w-4 h-4 group-hover:text-primary" />
                   ) : (
@@ -90,8 +92,8 @@ const Navbar = () => {
                   </div>
                 )}
               </div>
-              <a href="#" className="text-gray-700 hover:text-primary transition-colors font-medium">About</a>
-              <a href="#" className="text-gray-700 hover:text-primary transition-colors font-medium">Contact</a>
+              <Link to="#" className="text-gray-700 hover:text-primary transition-colors font-medium">Kids Games</Link>
+              <Link to="/contact" className="text-gray-700 hover:text-primary transition-colors font-medium">Contact</Link>
             </div>
           </div>
           <div className="hidden md:flex items-center space-x-4">
@@ -126,14 +128,14 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg max-h-[calc(100vh-4rem)] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
           <div className="px-4 pt-2 pb-3 space-y-1">
-            <a href="/" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg">
+            <Link to="/" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg">
               Home
-            </a>
+            </Link>
             <button
               onClick={() => setShowCourses(!showCourses)}
               className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg flex items-center justify-between"
             >
-              Courses
+              Subjects
               {showCourses ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
             {showCourses && (
@@ -156,12 +158,12 @@ const Navbar = () => {
                 ))}
               </div>
             )}
-            <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg">
-              About
-            </a>
-            <a href="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg">
+            <Link to="#" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg">
+              Kids Games
+            </Link>
+            <Link to="/contact" className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg">
               Contact
-            </a>
+            </Link>
             <div className="pt-4 flex flex-col space-y-2">
               <button 
                 onClick={() => navigate('/login')}
